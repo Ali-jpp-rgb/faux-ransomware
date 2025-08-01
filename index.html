@@ -2,19 +2,62 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>🔐 Ransomware X</title>
-  <link rel="stylesheet" href="style.css">
+  <title>⚠️ Ransomware - Données chiffrées ⚠️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #000;
+      color: #f00;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      animation: clignote 1s infinite alternate;
+    }
+    p {
+      font-size: 1.2em;
+      margin: 15px 0;
+    }
+    #timer {
+      font-size: 2em;
+      margin-top: 30px;
+      color: yellow;
+    }
+    @keyframes clignote {
+      from { opacity: 1; }
+      to { opacity: 0.3; }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>⚠️ Toutes vos données ont été chiffrées ⚠️</h1>
-    <p>
-      Envoyez <strong>10.000 FCFA</strong> via Mobile Money au <br><span class="num">+241 XX XX XX XX</span><br><br>
-      Sinon, vos données seront <span class="danger">VENDUES</span> sur le darknet.
-    </p>
-    <p class="timer">⏳ Temps restant : <span id="countdown">24:00:00</span></p>
-  </div>
+  <h1>⚠️ Toutes vos données ont été chiffrées ⚠️</h1>
+  <p>Vos fichiers personnels sont désormais inaccessibles.</p>
+  <p>Pour les récupérer, vous devez appeler immédiatement ce numéro :</p>
+  <p style="font-size: 1.8em; color: #0f0;"><strong>076-47-32-34</strong></p>
+  <p>Ne perdez pas de temps, chaque minute compte.</p>
+  <div id="timer">⏳ Temps restant : 01:00:00</div>
 
-  <script src="script.js"></script>
+  <script>
+    let totalSeconds = 3600;
+    const timer = document.getElementById('timer');
+
+    function updateTimer() {
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      timer.textContent = `⏳ Temps restant : ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      if (totalSeconds > 0) {
+        totalSeconds--;
+        setTimeout(updateTimer, 1000);
+      } else {
+        document.body.innerHTML = "<h1>❌ Temps écoulé ❌<br>Les données seront supprimées.</h1>";
+      }
+    }
+
+    updateTimer();
+  </script>
 </body>
 </html>
